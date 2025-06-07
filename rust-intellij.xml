@@ -1,0 +1,10 @@
+<project name="str-reverse-intellij-integration" default="str-reverse-intellij-build" basedir=".">
+  <description>
+    IntelliJ integration to trigger maven steps to build the Rust code via the rust-maven-plugin.
+  </description>
+  <target name="str-reverse-intellij-build">
+    <exec executable="./mvnw">
+      <arg value="org.questdb:rust-maven-plugin:build@str-reverse"/>
+    </exec>
+  </target>
+</project>
