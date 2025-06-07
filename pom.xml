@@ -86,7 +86,7 @@
                   If you need to, you can customize the path to the Cargo command
                   Otherwise by default it will be searched for in the PATH.
               -->
-               <cargoPath>/home/gortiz/.cargo/bin/cargo</cargoPath>
+<!--               <cargoPath>/home/gortiz/.cargo/bin/cargo</cargoPath>-->
 
               <!--
                   The path to the Rust crate we want to build (which will contain a Cargo.toml).

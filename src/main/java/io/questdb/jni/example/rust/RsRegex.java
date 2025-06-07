@@ -55,5 +55,10 @@ public interface RsRegex extends AutoCloseable {
     public int hashCode() {
       return Objects.hash(getStart(), getEnd());
     }
+
+    @Override
+    public String toString() {
+      return "Match(" + start + ", " + end + ')';
+    }
   }
 }

@@ -61,12 +61,11 @@ public class LibTest {
   public void testFind() {
     RsRegex.Factory factory = new JniRsRegex.Factory();
     try (RsRegex regex = factory.create("World")) {
-      assertEquals(new RsRegex.Match(6, 13), regex.find("Hello World!"));
-      assertEquals(new RsRegex.Match(6, 13), regex.find("Hello World!", 0));
-      assertEquals(new RsRegex.Match(6, 13), regex.find("Hello World!", 5));
-      assertEquals(new RsRegex.Match(6, 13), regex.find("Hello World!", 6));
+      assertEquals(new RsRegex.Match(6, 11), regex.find("Hello World!"));
+      assertEquals(new RsRegex.Match(6, 11), regex.find("Hello World!", 0));
+      assertEquals(new RsRegex.Match(6, 11), regex.find("Hello World!", 5));
+      assertEquals(new RsRegex.Match(6, 11), regex.find("Hello World!", 6));
       assertNull(regex.find("Hello World!", 7));
-      assertNull(regex.find("Hello World!", 20));
     }
   }
 

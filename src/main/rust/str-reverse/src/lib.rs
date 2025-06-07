@@ -25,7 +25,7 @@ use std::ptr::null_mut;
 use jni::JNIEnv;
 use jni::objects::{JClass, JString, JValue, JValueGen};
 use jni::sys::{jboolean, jint, jlong, jobject, jstring};
-use regex::Regex;
+use regex::{Match, Regex};
 
 #[no_mangle]
 pub extern "system" fn Java_io_questdb_jni_example_rust_Main_reversedString(
@@ -108,11 +108,16 @@ pub extern "system" fn Java_io_questdb_jni_example_rust_JniRsRegex_findNative(
 
     // Perform the search
     match regex.find(&haystack_str[start as usize..]) {
-        Some(m) => _env.new_object(
-            "io/questdb/jni/example/rust/MatchResult",
-            "(II)V",
-             &[JValueGen::Int(m.start() as jint), JValueGen::Int(m.end() as jint)]
-        ).expect("Couldn't create MatchResult object!").into_raw(),
+        Some(m) => {
+            let class = _env.find_class("io/questdb/jni/example/rust/RsRegex$Match")
+                .expect("Couldn't find RsRegex$Match");
+
+            _env.new_object(
+                class,
+                "(II)V",
+                &[JValue::from(m.start() as jint + start), JValue::from(m.end() as jint + start)]
+            ).expect("Couldn't create MatchResult object!").into_raw()
+        }
         None => null_mut()
     }
 }
